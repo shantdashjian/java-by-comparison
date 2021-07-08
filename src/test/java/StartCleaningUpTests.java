@@ -4,6 +4,7 @@ import startcleaningup.after.LaboratoryNegations;
 import startcleaningup.after.Astronaut;
 import startcleaningup.after.SpaceShip;
 import startcleaningup.after.Logbook;
+import startcleaningup.after.BoardComputer;
 import startcleaningup.before.*;
 
 import java.nio.file.Path;
@@ -12,8 +13,7 @@ import java.time.Duration;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class StartCleaningUpTests {
 
@@ -101,5 +101,18 @@ public class StartCleaningUpTests {
         Logbook logbook = new Logbook();
 
         assertThrows(IllegalArgumentException.class, () -> logbook.writeMessage(message, location));
+    }
+
+    @Test
+    void test_avoid_switch_fallthrough() {
+        CruiseControl cruiseControl = mock(CruiseControl.class);
+        BoardComputer boardComputer = new BoardComputer(cruiseControl);
+        User user = mock(User.class);
+        when(user.getRank()).thenReturn(Rank.UNKNOWN);
+
+        boardComputer.authorize(user);
+
+        verify(cruiseControl).logUnauthorizedAccessAttempt();
+        verifyNoMoreInteractions(cruiseControl);
     }
 }
