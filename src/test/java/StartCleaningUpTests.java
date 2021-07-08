@@ -2,9 +2,10 @@ import org.junit.jupiter.api.Test;
 import startcleaningup.after.Laboratory;
 import startcleaningup.after.LaboratoryNegations;
 import startcleaningup.after.Astronaut;
-import startcleaningup.before.Microscope;
-import startcleaningup.before.Sample;
-import startcleaningup.before.Result;
+import startcleaningup.after.SpaceShip;
+import startcleaningup.before.*;
+
+import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -70,5 +71,23 @@ public class StartCleaningUpTests {
         Astronaut astronaut = new Astronaut(name, missions);
 
         assertThat(astronaut.isValid()).isTrue();
+    }
+
+    @Test
+    void test_simplify_boolean_expressions() {
+        Crew crew = mock(Crew.class);
+        when(crew.getSize()).thenReturn(4);
+        FuelTank fuelTank = mock(FuelTank.class);
+        when(fuelTank.getFuel()).thenReturn(100);
+        Hull hull = mock(Hull.class);
+        when(hull.isIntact()).thenReturn(true);
+        Navigator navigator = mock(Navigator.class);
+        when(navigator.requiredFuelToEarth()).thenReturn(50);
+        when(navigator.timeToEarth()).thenReturn(Duration.ofDays(1));
+        OxygenTank oxygenTank = mock(OxygenTank.class);
+        when(oxygenTank.lastsFor(crew.getSize())).thenReturn(Duration.ofDays(2));
+        SpaceShip spaceShip = new SpaceShip(crew, fuelTank, hull, navigator, oxygenTank);
+
+        assertThat(spaceShip.willCrewSurvive()).isTrue();
     }
 }
