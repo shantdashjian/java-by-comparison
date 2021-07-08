@@ -5,6 +5,7 @@ import startcleaningup.after.Astronaut;
 import startcleaningup.after.SpaceShip;
 import startcleaningup.after.Logbook;
 import startcleaningup.after.BoardComputer;
+import startcleaningup.after.BoardComputerWithIf;
 import startcleaningup.before.*;
 
 import java.nio.file.Path;
@@ -114,5 +115,17 @@ public class StartCleaningUpTests {
 
         verify(cruiseControl).logUnauthorizedAccessAttempt();
         verifyNoMoreInteractions(cruiseControl);
+    }
+
+    @Test
+    void test_always_use_braces() {
+        CruiseControl cruiseControl = mock(CruiseControl.class);
+        BoardComputerWithIf boardComputerWithIf = new BoardComputerWithIf(cruiseControl);
+        User user = mock(User.class);
+        when(user.isUnknown()).thenReturn(true);
+
+        boardComputerWithIf.authorize(user);
+
+        verify(cruiseControl).logUnauthorizedAccessAttempt();
     }
 }
