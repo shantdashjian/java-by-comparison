@@ -1,0 +1,10 @@
+startcleaningup/before/Result.java
+ startcleaningup.before.Result
+startcleaningup/before/Laboratory.java
+ startcleaningup.before.Laboratory
+startcleaningup/before/Microscope.java
+ startcleaningup.before.Microscope
+startcleaningup/after/Laboratory.java
+ startcleaningup.after.Laboratory
+startcleaningup/before/Sample.java
+ startcleaningup.before.Sample

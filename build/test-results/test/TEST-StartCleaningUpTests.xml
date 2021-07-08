@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="StartCleaningUpTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-07-08T17:54:36" hostname="Shauns-MacBook-Pro.local" time="0.572">
+  <properties/>
+  <testcase name="test_avoid_unnecessary_comparisons_alien()" classname="StartCleaningUpTests" time="0.565"/>
+  <testcase name="test_avoid_unnecessary_comparisons_humanoid()" classname="StartCleaningUpTests" time="0.003"/>
+  <testcase name="test_avoid_unnecessary_comparisons_inorganic()" classname="StartCleaningUpTests" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
