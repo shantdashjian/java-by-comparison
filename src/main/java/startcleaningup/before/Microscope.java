@@ -9,4 +9,8 @@ public class Microscope {
     public boolean isHumanoid(Sample sample) {
         return false;
     }
+
+    public boolean isOrganic(Sample sample) {
+        return false;
+    }
 }

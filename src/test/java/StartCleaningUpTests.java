@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import startcleaningup.after.Laboratory;
+import startcleaningup.after.LaboratoryNegations;
 import startcleaningup.before.Microscope;
 import startcleaningup.before.Sample;
 import startcleaningup.before.Result;
@@ -47,5 +48,17 @@ public class StartCleaningUpTests {
         Result result = laboratory.analyze(sample);
 
         assertThat(result).isEqualTo(Result.HUMANOID);
+    }
+
+    @Test
+    void test_avoid_negations() {
+        Microscope microscope = mock(Microscope.class);
+        when(microscope.isOrganic(any(Sample.class))).thenReturn(false);
+        LaboratoryNegations laboratoryNegations = new LaboratoryNegations(microscope);
+        Sample sample = Sample.INORGANIC;
+
+        Result result = laboratoryNegations.analyze(sample);
+
+        assertThat(result).isEqualTo(Result.INORGANIC);
     }
 }
