@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import startcleaningup.after.Laboratory;
 import startcleaningup.after.LaboratoryNegations;
+import startcleaningup.after.Astronaut;
 import startcleaningup.before.Microscope;
 import startcleaningup.before.Sample;
 import startcleaningup.before.Result;
@@ -60,5 +61,14 @@ public class StartCleaningUpTests {
         Result result = laboratoryNegations.analyze(sample);
 
         assertThat(result).isEqualTo(Result.INORGANIC);
+    }
+
+    @Test
+    void test_return_boolean_expressions_directly() {
+        String name = "Tim";
+        int missions = 1;
+        Astronaut astronaut = new Astronaut(name, missions);
+
+        assertThat(astronaut.isValid()).isTrue();
     }
 }
