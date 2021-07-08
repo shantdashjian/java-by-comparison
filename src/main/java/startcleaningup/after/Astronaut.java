@@ -10,6 +10,8 @@ public class Astronaut {
     }
 
     public boolean isValid() {
-        return missions >= 0 && name != null && !name.trim().isEmpty();
+        boolean isValidMissions = missions >= 0;
+        boolean isValidName = name != null && !name.trim().isEmpty();
+        return isValidMissions && isValidName;
     }
 }
