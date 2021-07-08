@@ -3,11 +3,14 @@ import startcleaningup.after.Laboratory;
 import startcleaningup.after.LaboratoryNegations;
 import startcleaningup.after.Astronaut;
 import startcleaningup.after.SpaceShip;
+import startcleaningup.after.Logbook;
 import startcleaningup.before.*;
 
+import java.nio.file.Path;
 import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -89,5 +92,14 @@ public class StartCleaningUpTests {
         SpaceShip spaceShip = new SpaceShip(crew, fuelTank, hull, navigator, oxygenTank);
 
         assertThat(spaceShip.willCrewSurvive()).isTrue();
+    }
+
+    @Test
+    void test_avoid_NullPointerException_in_conditionals() {
+        String message = null;
+        Path location = null;
+        Logbook logbook = new Logbook();
+
+        assertThrows(IllegalArgumentException.class, () -> logbook.writeMessage(message, location));
     }
 }
