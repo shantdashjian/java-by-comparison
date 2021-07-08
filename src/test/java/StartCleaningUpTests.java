@@ -6,6 +6,7 @@ import startcleaningup.after.SpaceShip;
 import startcleaningup.after.Logbook;
 import startcleaningup.after.BoardComputer;
 import startcleaningup.after.BoardComputerWithIf;
+import startcleaningup.after.BoardComputerWithIfElse;
 import startcleaningup.before.*;
 
 import java.nio.file.Path;
@@ -125,6 +126,18 @@ public class StartCleaningUpTests {
         when(user.isUnknown()).thenReturn(true);
 
         boardComputerWithIf.authorize(user);
+
+        verify(cruiseControl).logUnauthorizedAccessAttempt();
+    }
+
+    @Test
+    void test_ensure_code_symmetry() {
+        CruiseControl cruiseControl = mock(CruiseControl.class);
+        BoardComputerWithIfElse boardComputerWithIfElse = new BoardComputerWithIfElse(cruiseControl);
+        User user = mock(User.class);
+        when(user.isUnknown()).thenReturn(true);
+
+        boardComputerWithIfElse.authorize(user);
 
         verify(cruiseControl).logUnauthorizedAccessAttempt();
     }
