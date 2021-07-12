@@ -4,6 +4,7 @@ import levelupyourcodestyle.after.LaunchCheckList;
 import levelupyourcodestyle.after.SpeedPreset;
 import levelupyourcodestyle.before.Commander;
 import levelupyourcodestyle.after.Inventory;
+import levelupyourcodestyle.after.InventoryComputeIntense;
 import levelupyourcodestyle.before.Status;
 import levelupyourcodestyle.before.Supply;
 import org.junit.jupiter.api.Test;
@@ -54,11 +55,22 @@ public class LevelUpYourCodeStyleTests {
         List<Supply> supplies = new ArrayList();
         supplies.add(new Supply(false));
         supplies.add(new Supply(false));
-        supplies.add(new Supply(true));
         Inventory inventory = new Inventory(supplies);
+        supplies.add(new Supply(true));
 
         inventory.disposeContaminatedSupplies();
 
         assertThat(inventory.getSupplies().size()).isEqualTo(2);
+    }
+
+    @Test
+    void test_avoid_compute_intense_operations_during_iteration() {
+        List<Supply> supplies = new ArrayList();
+        supplies.add(new Supply(false, "food"));
+        supplies.add(new Supply(false, "water"));
+        supplies.add(new Supply(true, "oxygen"));
+        InventoryComputeIntense inventoryComputeIntense = new InventoryComputeIntense(supplies);
+
+        assertThat(inventoryComputeIntense.find(".*food.*").size()).isEqualTo(1);
     }
 }
