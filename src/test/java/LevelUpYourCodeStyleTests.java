@@ -2,21 +2,22 @@ import levelupyourcodestyle.after.CruiseControl;
 import levelupyourcodestyle.after.CruiseControlConstants;
 import levelupyourcodestyle.after.LaunchCheckList;
 import levelupyourcodestyle.after.SpeedPreset;
-import levelupyourcodestyle.before.Commander;
+import levelupyourcodestyle.after.Mission;
+import levelupyourcodestyle.before.*;
 import levelupyourcodestyle.after.Inventory;
 import levelupyourcodestyle.after.InventoryComputeIntense;
 import levelupyourcodestyle.after.DistanceUnit;
-import levelupyourcodestyle.before.Status;
-import levelupyourcodestyle.before.Supply;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class LevelUpYourCodeStyleTests {
 
@@ -82,5 +83,15 @@ public class LevelUpYourCodeStyleTests {
         DistanceUnit otherDistanceUnit = DistanceUnit.MILES;
 
         assertThat(thisDistanceUnit.getConversionRate(otherDistanceUnit)).isCloseTo(1.0, within(0.1));
+    }
+
+    @Test
+    void test_favor_format_over_concatenation() throws IOException {
+        Logbook logbook = mock(Logbook.class);
+        Mission mission = new Mission(logbook, LocalDate.now());
+
+        mission.update("Tim Brown", "Be brave!", "logbook.txt");
+
+        verify(logbook).writeMessage(anyString(), any(Path.class));
     }
 }
