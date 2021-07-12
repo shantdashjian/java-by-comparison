@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Inventory {
+
     private final List<Supply> supplies;
 
     public Inventory(List<Supply> supplies) {

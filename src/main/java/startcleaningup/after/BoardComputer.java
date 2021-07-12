@@ -6,6 +6,7 @@ import startcleaningup.before.User;
 import java.util.Objects;
 
 public class BoardComputer {
+
     private final CruiseControl cruiseControl;
 
     public BoardComputer(CruiseControl cruiseControl) {

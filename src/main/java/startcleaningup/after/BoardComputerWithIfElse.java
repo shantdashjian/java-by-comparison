@@ -6,6 +6,7 @@ import startcleaningup.before.User;
 import java.util.Objects;
 
 public class BoardComputerWithIfElse {
+
     private final CruiseControl cruiseControl;
 
     public BoardComputerWithIfElse(CruiseControl cruiseControl) {

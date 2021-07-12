@@ -19,6 +19,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class LevelUpYourCodeStyleTests {
+
     public static final int CRUISE_SPEED_PRESET = 2;
 
     public static final int CRUISE_SPEED_KMH = 16944;

@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LaunchCheckList {
+
     List<String> checks = Arrays.asList("Cabin Pressure",
             "Communication",
             "Engine");

@@ -3,6 +3,7 @@ package startcleaningup.after;
 import startcleaningup.before.*;
 
 public class SpaceShip {
+
     private final Crew crew;
     private final FuelTank fuelTank;
     private final Hull hull;

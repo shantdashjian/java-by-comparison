@@ -1,6 +1,7 @@
 package startcleaningup.after;
 
 public class Astronaut {
+
     private String name;
     private int missions;
 
