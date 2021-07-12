@@ -5,6 +5,7 @@ import levelupyourcodestyle.after.SpeedPreset;
 import levelupyourcodestyle.before.Commander;
 import levelupyourcodestyle.after.Inventory;
 import levelupyourcodestyle.after.InventoryComputeIntense;
+import levelupyourcodestyle.after.DistanceUnit;
 import levelupyourcodestyle.before.Status;
 import levelupyourcodestyle.before.Supply;
 import org.junit.jupiter.api.Test;
@@ -72,5 +73,13 @@ public class LevelUpYourCodeStyleTests {
         InventoryComputeIntense inventoryComputeIntense = new InventoryComputeIntense(supplies);
 
         assertThat(inventoryComputeIntense.find(".*food.*").size()).isEqualTo(1);
+    }
+
+    @Test
+    void test_group_with_new_lines() {
+        DistanceUnit thisDistanceUnit = DistanceUnit.MILES;
+        DistanceUnit otherDistanceUnit = DistanceUnit.MILES;
+
+        assertThat(thisDistanceUnit.getConversionRate(otherDistanceUnit)).isCloseTo(1.0, within(0.1));
     }
 }
