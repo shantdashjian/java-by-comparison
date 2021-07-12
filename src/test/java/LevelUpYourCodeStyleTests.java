@@ -3,8 +3,13 @@ import levelupyourcodestyle.after.CruiseControlConstants;
 import levelupyourcodestyle.after.LaunchCheckList;
 import levelupyourcodestyle.after.SpeedPreset;
 import levelupyourcodestyle.before.Commander;
+import levelupyourcodestyle.after.Inventory;
 import levelupyourcodestyle.before.Status;
+import levelupyourcodestyle.before.Supply;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -42,5 +47,18 @@ public class LevelUpYourCodeStyleTests {
         LaunchCheckList launchCheckList = new LaunchCheckList();
 
         assertThat(launchCheckList.prepareForTakeoff(commander)).isEqualTo(Status.ABORT_TAKE_OFF);
+    }
+
+    @Test
+    void test_avoid_collection_modification_during_iteration() {
+        List<Supply> supplies = new ArrayList();
+        supplies.add(new Supply(false));
+        supplies.add(new Supply(false));
+        supplies.add(new Supply(true));
+        Inventory inventory = new Inventory(supplies);
+
+        inventory.disposeContaminatedSupplies();
+
+        assertThat(inventory.getSupplies().size()).isEqualTo(2);
     }
 }
