@@ -2,8 +2,10 @@ package levelupyourcodestyle.after;
 
 import levelupyourcodestyle.before.Supply;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class Inventory {
 
@@ -24,5 +26,11 @@ public class Inventory {
                 iterator.remove();
             }
         }
+    }
+
+    public int getQuantity(Supply supply) {
+        Objects.requireNonNull(supply, "supply must not be null");
+
+        return Collections.frequency(supplies, supply);
     }
 }

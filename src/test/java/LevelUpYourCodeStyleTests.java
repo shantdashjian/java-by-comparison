@@ -94,4 +94,14 @@ public class LevelUpYourCodeStyleTests {
 
         verify(logbook).writeMessage(anyString(), any(Path.class));
     }
+
+    @Test
+    void test_favor_java_api_over_diy() {
+        List<Supply> supplies = new ArrayList<>();
+        supplies.add(new Supply(false, "food"));
+        supplies.add(new Supply(false, "food"));
+        Inventory inventory = new Inventory(supplies);
+
+        assertThat(inventory.getQuantity(new Supply(false, "food"))).isEqualTo(2);
+    }
 }

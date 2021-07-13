@@ -1,5 +1,7 @@
 package levelupyourcodestyle.before;
 
+import java.util.Objects;
+
 public class Supply {
     private final boolean contaminated;
     private String name;
@@ -31,5 +33,18 @@ public class Supply {
                 "contaminated=" + contaminated +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Supply supply = (Supply) o;
+        return contaminated == supply.contaminated && name.equals(supply.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contaminated, name);
     }
 }
