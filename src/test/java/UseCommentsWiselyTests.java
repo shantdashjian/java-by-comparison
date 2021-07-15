@@ -6,6 +6,7 @@ import usecommentswisely.after.Inventory;
 import usecommentswisely.after.LaunchCheckList;
 import usecommentswisely.after.SmallDistanceUnit;
 import usecommentswisely.after.FuelSystem;
+import usecommentswisely.after.InventoryFast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,5 +54,16 @@ public class UseCommentsWiselyTests {
         FuelSystem fuelSystem = new FuelSystem(tanks);
 
         assertThat(fuelSystem.getAverageTankFillingPercent()).isEqualTo(100);
+    }
+
+    @Test
+    void test_document_implementation_decisions() {
+        InventoryFast inventoryFast = new InventoryFast();
+        inventoryFast.add(new Supply(true, "food"));
+        inventoryFast.add(new Supply(true, "sleep"));
+        inventoryFast.add(new Supply(true, "water"));
+
+        assertThat(inventoryFast.isInStock("food"))
+                .isTrue();
     }
 }

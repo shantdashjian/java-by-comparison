@@ -2,7 +2,7 @@ package levelupyourcodestyle.before;
 
 import java.util.Objects;
 
-public class Supply {
+public class Supply implements Comparable<Supply>{
     private final boolean contaminated;
     private String name;
 
@@ -46,5 +46,10 @@ public class Supply {
     @Override
     public int hashCode() {
         return Objects.hash(contaminated, name);
+    }
+
+    @Override
+    public int compareTo(Supply o) {
+        return this.getName().compareTo(o.getName());
     }
 }
