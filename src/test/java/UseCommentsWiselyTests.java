@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import usecommentswisely.after.Inventory;
 import usecommentswisely.after.LaunchCheckList;
 import usecommentswisely.after.SmallDistanceUnit;
+import usecommentswisely.after.FuelSystem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,5 +42,16 @@ public class UseCommentsWiselyTests {
         assertThat(SmallDistanceUnit.CENTIMETER
                 .getConversionRate(SmallDistanceUnit.CENTIMETER))
                 .isCloseTo(1, within(0.01));
+    }
+
+    @Test
+    void test_replace_comments_with_utility_methods() {
+        List<Double> tanks = new ArrayList<>();
+        tanks.add(1.00);
+        tanks.add(1.00);
+        tanks.add(1.00);
+        FuelSystem fuelSystem = new FuelSystem(tanks);
+
+        assertThat(fuelSystem.getAverageTankFillingPercent()).isEqualTo(100);
     }
 }
